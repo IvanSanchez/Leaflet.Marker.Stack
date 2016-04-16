@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://leafletjs-cdn.s3.amazonaws.com/content/leaflet/master/leaflet.css" rel="stylesheet" type="text/css" />
+<script src="https://leafletjs-cdn.s3.amazonaws.com/content/leaflet/master/leaflet.js"></script>
+<script src="Leaflet.Marker.Stack.js"></script>
+<script src="Leaflet.Icon.Chip.js"></script>
+
+  <meta charset="utf-8">
+  <title>Leaflet.Marker.Stack & Leaflet.Icon.Chip</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    #map {
+      min-height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id='map'></div>
+
+
+
+  <script>
+    var myCenter = new L.LatLng(63.41, 10.41);
+    var map = new L.Map('map', {center: myCenter, zoom: 6});
+
+    var positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+    }).addTo(map);
+
+    var points = [[59.9274956808828,10.733642578125],[59.23217626921806,9.1240234375],[59.66774058164963,9.64599609375],[58.983991031797785,5.767822265625],[61.24381719465578,7.09716796875],[61.13262899079795,10.458984375],[60.62471311568258,6.427001953125],[60.97843744941454,9.239501953125],[60.38671955355991,5.306396484375],[61.454521127671924,5.811767578125],[62.46664555258511,6.141357421875],[63.104699747121096,7.75634765625],[62.580695541118914,11.315917968749998],[61.83282044219323,8.5418701171875],[63.470144746565445,10.87646484375]]
+    var colors = [ '#005777', '#37A4AB', '#B2EEE6', '#5C308C', '#A640A2', '#E76CAC', '#FFC2C7'];
+
+    points.forEach(function(point) {
+      var chipIcons = [];
+      var rdColors = getRandomOrderedColors();
+      for (var i = 0; i < rdColors.length; i++) {
+        chipIcons.push(L.icon.chip({
+          color: rdColors[i]
+        }));
+      }
+      var stack = L.marker.stack(point, {
+        icons: chipIcons,
+        stackOffset: [0, -5]
+      });
+
+      map.addLayer(stack);
+    })
+
+    function getRandomOrderedColors() {
+      var numColors = 3 + Math.floor(Math.random() * 17);
+      var rdColors = [];
+      for (var i = 0; i < numColors; i++) {
+        var rdIndex = Math.floor(Math.random()*colors.length);
+        rdColors.push({
+          color: colors[rdIndex],
+          index: rdIndex
+        });
+      }
+      rdColors.sort(function(a, b) {
+        return (a.index < b.index) ? 1 : -1;
+      });
+      return rdColors.map(function(c) {
+        return c.color;
+      });
+    }
+
+
+  </script>
+</body>
+</html>

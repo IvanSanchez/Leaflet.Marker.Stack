@@ -44,7 +44,9 @@ var stack = L.marker.stack(myCenter, {
 map.addLayer(stack);
 ```
 
-Check out the [live demo](http://ivansanchez.github.io/Leaflet.Marker.Stack/demo.html).
+Check out the live demos:
+- [simple](http://ivansanchez.github.io/Leaflet.Marker.Stack/demos/simple.html).
+- [color ramps](http://ivansanchez.github.io/Leaflet.Marker.Stack/demos/color_ramps.html).
 
 
 
@@ -54,4 +56,3 @@ Check out the [live demo](http://ivansanchez.github.io/Leaflet.Marker.Stack/demo
 <ivan@sanchezortega.es> wrote this file. As long as you retain this notice you
 can do whatever you want with this stuff. If we meet some day, and you think
 this stuff is worth it, you can buy me a beer in return.
-
