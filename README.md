@@ -2,6 +2,7 @@
 
 A client-side implementation of @CartoDB's idea of a [stacked chips symbolizer](http://blog.cartodb.com/stacking-chips-a-map-hack/).
 
+![Image of a few chip stacks with random data](http://ivansanchez.github.io/Leaflet.Marker.Stack/chips.png)
 
 This is composed of two parts:
 * `L.Marker.Stack` allows displaying several `L.Icon`s on a stack top of each other, at the same `L.LatLng`.
